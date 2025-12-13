@@ -1,0 +1,9 @@
+# Parse configuration for WDSFPGA benchmark flow metrics from vpr.out
+# Includes CLB count, IO pins, memories, multipliers, critical path delay (ns), and Fmax (MHz)
+
+num_clb;vpr.out;Netlist clb blocks:\s*(\d+)
+num_io;vpr.out;Netlist inputs pins:\s*(\d+)
+num_memories;vpr.out;Netlist memory blocks:\s*(\d+)
+num_mult;vpr.out;Netlist dsp_top blocks:\s*(\d+)
+fmax;vpr.out;Final critical path delay \(least slack\): .* ns, Fmax: (.*) MHz
+critical_path_delay;vpr.out;Final critical path delay \(least slack\): (.*) ns
