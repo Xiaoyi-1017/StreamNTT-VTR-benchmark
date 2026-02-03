@@ -43,7 +43,7 @@ run: run-vtr-flow parse-vtr-flow
 
 run-vtr-flow:
 	@echo "Running VTR flow on Verilog files..."
-	$(VTR_DIR)/.venv/bin/python3 $(VTR_DIR)/vtr_flow/scripts/run_vtr_flow.py ./verilog/top.v $(VTR_DIR)/vtr_flow/arch/COFFE_22nm/k6FracN10LB_mem20K_complexDSP_customSB_22nm.xml -include $(filter-out ./verilog/top.v, $(wildcard ./verilog/*.v))
+	$(VTR_DIR)/.venv/bin/python3 $(VTR_DIR)/vtr_flow/scripts/run_vtr_flow.py ./verilog/top.v $(VTR_DIR)/vtr_flow/arch/COFFE_22nm/k6FracN10LB_mem20K_complexDSP_customSB_22nm.xml -include $(filter-out ./verilog/top.v, $(wildcard ./verilog/*.v)) -sdc_file $(abspath ./verilog/top.sdc)
 	@echo "VTR flow run complete."
 
 parse-vtr-flow:

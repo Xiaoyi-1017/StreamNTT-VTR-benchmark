@@ -1,0 +1,2 @@
+num_clb	num_io	num_memories	num_mult	fmax	critical_path_delay	
+1283	267	11	43	113.603	8.80257	

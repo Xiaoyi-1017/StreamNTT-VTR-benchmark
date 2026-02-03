@@ -1,0 +1,135 @@
+/usr/bin/env time -v /home/wh9297/WDSFPGA/StreamNTT-VTR-benchmark/vtr-verilog-to-routing/abc/abc -c echo ""; echo "Load Netlist"; echo "============"; read 0_top.parmys.blif; time; echo ""; echo "Circuit Info"; echo "=========="; print_stats; print_latch; time; echo ""; echo "LUT Costs"; echo "========="; print_lut; time; echo ""; echo "Logic Opt + Techmap"; echo "==================="; strash; ifraig -v; scorr -v; dc2 -v; dch -f; if -K 6 -v; mfs2 -v; print_stats; time; echo ""; echo "Output Netlist"; echo "=============="; write_hie 0_top.parmys.blif 0_top.raw.abc.blif; time;
+ABC command line: "echo ""; echo "Load Netlist"; echo "============"; read 0_top.parmys.blif; time; echo ""; echo "Circuit Info"; echo "=========="; print_stats; print_latch; time; echo ""; echo "LUT Costs"; echo "========="; print_lut; time; echo ""; echo "Logic Opt + Techmap"; echo "==================="; strash; ifraig -v; scorr -v; dc2 -v; dch -f; if -K 6 -v; mfs2 -v; print_stats; time; echo ""; echo "Output Netlist"; echo "=============="; write_hie 0_top.parmys.blif 0_top.raw.abc.blif; time;".
+
+ 
+Load Netlist 
+============ 
+Warning: Constant-0 drivers added to 8 non-driven nets in network "top":
+$techmap$auto$hard_block.cc:122:cell_hard_block$3475.$11\buffer[22:0][7], $techmap$auto$hard_block.cc:122:cell_hard_block$3475.$11\buffer[22:0][8], $techmap$auto$hard_block.cc:122:cell_hard_block$4942.$11\buffer[22:0][7], $techmap$auto$hard_block.cc:122:cell_hard_block$4942.$11\buffer[22:0][8] ...
+Hierarchy reader converted 4407 instances of blackboxes.
+elapse: 0.10 seconds, total: 0.10 seconds
+ 
+Circuit Info 
+========== 
+[1;37mtop                           :[0m i/o =10343/ 8437  lat = 5428  nd = 13250  edge =  32157  cube = 22750  lev = 43
+Total latches =  5428. Init0 = 5428. Init1 = 0. InitDC = 0. Const data = 0.
+elapse: 0.00 seconds, total: 0.10 seconds
+ 
+LUT Costs 
+========= 
+# The area/delay of k-variable LUTs:
+# k    area     delay
+1      1.00      1.00
+2      1.00      1.00
+3      1.00      1.00
+4      1.00      1.00
+elapse: 0.00 seconds, total: 0.10 seconds
+ 
+Logic Opt + Techmap 
+=================== 
+SimWords = 32. Rounds = 717. Mem = 6.65 MB.  Classes: Beg = 650. End = 501.
+Proof = 512. Counter-example = 708. Fail = 0. FailReal = 0. Zero = 2027.
+Final = 23341. Miter = 24810. Total = 24858. Mux = 0. (Exor = 0.) SatVars = 5335.
+starts        :              723
+conflicts     :              252
+decisions     :           489380
+propagations  :          2161624
+AIG simulation   =     0.17 sec
+AIG traversal    =     0.00 sec
+SAT solving      =     0.13 sec
+    Unsat        =     0.00 sec
+    Sat          =     0.12 sec
+    Fail         =     0.00 sec
+Class refining   =     0.02 sec
+TOTAL RUNTIME    =     0.45 sec
+Allocated 1.62 MB to store simulation information.
+Initial simulation of 4 frames with 2 words.     Time =     0.00 sec
+Collecting candidate equivalence classes.        Time =     0.00 sec
+Simulation of 4 frames with 2 words (15 rounds). Time =     0.02 sec
+Before BMC: Equiv classes: Const1 =  8582. Class =  4251. Lit = 18004.
+After  BMC: Equiv classes: Const1 =  8541. Class =  4246. Lit = 17949.
+  0 : C =   7112. Cl =   4225. LR =  1307. NR = 13986. F =    0. - T =     0.64 sec
+  1 : C =   2918. Cl =   1025. LR =   958. NR = 24362. F =    0. - T =     2.76 sec
+  2 : C =   1251. Cl =    973. LR =  1043. NR = 37425. F =    0. - T =     0.65 sec
+  3 : C =    891. Cl =    891. LR =   833. NR = 39610. F =    0. - T =     0.26 sec
+  4 : C =    529. Cl =    842. LR =   680. NR = 40238. F =    0. - T =     0.24 sec
+  5 : C =     53. Cl =    505. LR =   560. NR = 40833. F =    0. - T =     0.21 sec
+  6 : C =     12. Cl =    467. LR =   406. NR = 41870. F =    0. - T =     0.07 sec
+  7 : C =      8. Cl =    464. LR =   359. NR = 41917. F =    0. - T =     0.01 sec
+  8 : C =      8. Cl =    464. LR =   355. NR = 41921. F =    0. - T =     0.00 sec
+Parameters: F = 1. AddF = 2. C-lim = 1000. Constr = 0. MaxLev = 0. Mem = 2.43 MB.
+AIG       : PI = 10343. PO = 8437. Latch = 5428. Node = 23341.  Ave SAT vars = 0.
+SAT calls : Proof = 902. Cex = 3497. Fail = 0. Lits proved = 1395.
+SAT solver: Vars max = 15327. Calls max = 2256. Recycles = 0. Sim rounds = 0.
+NBeg = 23341. NEnd = 22209. (Gain =   4.85 %).  RBeg = 5428. REnd = 5162. (Gain =   4.90 %).
+BMC         =     0.04 sec (  0.83 %)
+Spec reduce =     0.03 sec (  0.54 %)
+Mark cones  =     0.00 sec (  0.00 %)
+Sim SAT     =     3.17 sec ( 64.71 %)
+SAT solving =     1.43 sec ( 29.12 %)
+  unsat     =     0.01 sec (  0.12 %)
+  sat       =     1.42 sec ( 29.01 %)
+  undecided =     0.00 sec (  0.00 %)
+Other       =     0.23 sec (  4.80 %)
+TOTAL       =     4.90 sec (100.00 %)
+Starting:  top             : pi = 10343  po =  8437  lat =  5162  and =   22209  lev =  25
+Rewrite:   top             : pi = 10343  po =  8437  lat =  5162  and =   21624  lev =  25
+Refactor:  top             : pi = 10343  po =  8437  lat =  5162  and =   21473  lev =  25
+Balance:   top             : pi = 10343  po =  8437  lat =  5162  and =   21127  lev =  22
+Rewrite:   top             : pi = 10343  po =  8437  lat =  5162  and =   21050  lev =  22
+RewriteZ:  top             : pi = 10343  po =  8437  lat =  5162  and =   20973  lev =  23
+RefactorZ: top             : pi = 10343  po =  8437  lat =  5162  and =   20908  lev =  23
+RewriteZ:  top             : pi = 10343  po =  8437  lat =  5162  and =   20835  lev =  22
+K = 6. Memory (bytes): Truth =    0. Cut =   56. Obj =  136. Set =  600. CutMin = no
+Node =   40378.  Ch =  6088.  Total mem =   10.07 MB. Peak cut mem =    0.07 MB.
+P:  Del =    5.00.  Ar =    7176.0.  Edge =    34725.  Cut =   341233.  T =     0.02 sec
+P:  Del =    5.00.  Ar =    6729.0.  Edge =    33612.  Cut =   312998.  T =     0.02 sec
+P:  Del =    5.00.  Ar =    6692.0.  Edge =    23298.  Cut =   322606.  T =     0.02 sec
+F:  Del =    5.00.  Ar =    6574.0.  Edge =    22839.  Cut =   238169.  T =     0.02 sec
+A:  Del =    5.00.  Ar =    6521.0.  Edge =    22026.  Cut =   221012.  T =     0.02 sec
+A:  Del =    5.00.  Ar =    6516.0.  Edge =    22010.  Cut =   221540.  T =     0.02 sec
+Total time =     0.12 sec
+Duplicated 2390 gates to decouple the CO drivers.
+Performing MFS with 15505 PIs, 13599 POs, 8917 nodes (8917 flexible, 0 fixed, 0 empty).
+Nodes = 8917. Try = 8936. Resub = 19. Div = 141173 (ave = 15). SAT calls = 83183. Timeouts = 0. MaxDivs = 272.
+Attempts :   Remove     16 out of  24422 (  0.07 %)   Resub       3 out of    583 (  0.51 %)   
+Reduction:   Nodes       3 out of   8906 (  0.03 %)   Edges      27 out of  24400 (  0.11 %)   
+Win =     0.00 sec (  1.96 %)
+Div =     0.00 sec (  2.09 %)
+Cnf =     0.02 sec ( 10.52 %)
+Sat =     0.16 sec ( 84.58 %)
+Oth =     0.00 sec (  0.85 %)
+ALL =     0.18 sec (100.00 %)
+The network has 19 nodes changed by "mfs".
+[1;37mtop                           :[0m i/o =10343/ 8437  lat = 5162  nd =  8914  edge =  24373  cube = 15720  lev = 5
+elapse: 6.49 seconds, total: 6.59 seconds
+ 
+Output Netlist 
+============== 
+Warning: Constant-0 drivers added to 8 non-driven nets in network "top":
+$techmap$auto$hard_block.cc:122:cell_hard_block$3475.$11\buffer[22:0][7], $techmap$auto$hard_block.cc:122:cell_hard_block$3475.$11\buffer[22:0][8], $techmap$auto$hard_block.cc:122:cell_hard_block$4942.$11\buffer[22:0][7], $techmap$auto$hard_block.cc:122:cell_hard_block$4942.$11\buffer[22:0][8] ...
+Hierarchy writer reintroduced 4407 instances of blackboxes.
+elapse: 0.08 seconds, total: 6.67 seconds
+	Command being timed: "/home/wh9297/WDSFPGA/StreamNTT-VTR-benchmark/vtr-verilog-to-routing/abc/abc -c echo ""; echo "Load Netlist"; echo "============"; read 0_top.parmys.blif; time; echo ""; echo "Circuit Info"; echo "=========="; print_stats; print_latch; time; echo ""; echo "LUT Costs"; echo "========="; print_lut; time; echo ""; echo "Logic Opt + Techmap"; echo "==================="; strash; ifraig -v; scorr -v; dc2 -v; dch -f; if -K 6 -v; mfs2 -v; print_stats; time; echo ""; echo "Output Netlist"; echo "=============="; write_hie 0_top.parmys.blif 0_top.raw.abc.blif; time;"
+	User time (seconds): 6.66
+	System time (seconds): 0.03
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 65328
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 21128
+	Voluntary context switches: 1
+	Involuntary context switches: 20
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3680
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

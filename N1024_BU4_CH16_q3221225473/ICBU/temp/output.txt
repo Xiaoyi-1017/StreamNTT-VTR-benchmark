@@ -1,0 +1,5 @@
+vpr_status=success
+vpr_seconds=13
+rundir=/home/wh9297/WDSFPGA/StreamNTT-VTR-benchmark
+hostname=hitech1214
+error=
